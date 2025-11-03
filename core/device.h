@@ -3,11 +3,11 @@
 namespace core{
     // Forward Declarations
 
-    enum DType: int32_t { 
+    enum class DType: int32_t { 
         FP32
     };
 
-    enum Device: int32_t {
+    enum class Device: int32_t {
         CPU,
         CUDA,
     };
