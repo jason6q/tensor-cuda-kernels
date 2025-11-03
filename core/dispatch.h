@@ -2,6 +2,8 @@
 #include "unordered_map"
 #include "string"
 
+class Tensor;
+
 namespace core{
     /**
      * We will use a DispatchKey to select the correct kernels to use.
@@ -9,7 +11,7 @@ namespace core{
      * At the moment these only represent backend kernels but can evolve to more later on.
      * Pytorch has Autograd -> Backend -> Wrapper/Modes
      */
-    enum class DispatchKey : uint8_t {
+    enum class DispatchKey {
         UNDEFINED = 0, 
         CPU, 
         CUDA,
@@ -27,24 +29,24 @@ namespace core{
     class Dispatcher {
     };
 
-    // Global registry for dispatch -> Kernel maps
-    // E.g: Add Operation -> CPU / CUDA CUTE / CUTLASS Kernel based off DispatchKey.
-    std::unordered_map<std::string, std::unordered_map<DispatchKey, void*>> op_registry;
-    void add_registry(const std::string op_name, const DispatchKey dispatch_key, const void* fn){
-        // Does not exist
-        if(op_registry.end() == op_registry.find(op_name)){
-            auto op_table = std::unordered_map<DispatchKey, void*>();
-            op_registry.insert({op_name, op_table});
-            op_registry[op_name].insert({dispatch_key, fn});
-        }
-        else{
-            if(op_registry[op_name].end() == op_registry[op_name].find(dispatch_key)){
-                op_registry[op_name].insert({dispatch_key, fn});
-            }
-            else{
-                // Nothing.
-            }
-        }
-    }
+    /**
+     * Maintain an operator registry for every operator type with a specific signature
+     */
+    template<class Fn>
+    struct OpRegistry{
+        using MapFn = std::unordered_map<DispatchKey, Fn>;
+        MapFn table;
 
+        void add_kernel(DispatchKey dispatch_key, Fn fn){
+            table[dispatch_key] = fn;
+        }
+
+        Fn lookup(DispatchKey dispatch_key){
+            auto it = table.find(dispatch_key);
+            if(table.end() == it){
+                throw std::runtime_error("Unable to find kernel.");
+            }
+            return it->second;
+        }
+    };
 }
