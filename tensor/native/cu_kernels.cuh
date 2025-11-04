@@ -37,3 +37,9 @@ void launch_matmul_naive_backward(const scalar_t* grad_out, const scalar_t* a, c
 
 template <typename scalar_t>
 __global__ void arange_kernel(scalar_t* a, int32_t n);
+
+//template <typename scalar_t>
+//__global__ void eq_kernel(scalar_t* a, int32_t n);
+//
+//template <typename scalar_t>
+//__global__ void any_kernel(scalar_t* a, int32_t n);

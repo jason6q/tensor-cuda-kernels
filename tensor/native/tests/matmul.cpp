@@ -3,6 +3,7 @@
  */
 #include "core/device.h"
 #include "tensor/tensor.h"
+#include "tensor/tensor_factory.h"
 #include "tensor/ops.h"
 
 int main(int argc, char* argv[]){

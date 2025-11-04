@@ -36,11 +36,12 @@ set(INCLUDES_DIR
 set(SOURCES
   core/data_ptr.cpp
   tensor/tensor.cpp
-  tensor/native/matmul.cu
-  tensor/native/arange.cu
-  tensor/native/cuda/matmul_naive.cu
-  tensor/native/cuda/matmul_tile.cu
-  tensor/native/cuda/arange.cu
+  tensor/tensor_factory.cpp
+  #tensor/native/matmul.cu
+  #tensor/native/arange.cu
+  #tensor/native/cuda/matmul_naive.cu
+  #tensor/native/cuda/matmul_tile.cu
+  #tensor/native/cuda/arange.cu
 )
 add_library(jq_kernels SHARED ${SOURCES})
 target_include_directories(jq_kernels PUBLIC ${INCLUDES_DIR})
@@ -56,8 +57,8 @@ set_target_properties(jq_kernels PROPERTIES
 # Build tests
 file(GLOB TEST_SOURCES 
   core/tests/*.cpp
-  tensor/tests/*.cpp
-  tensor/native/tests/*.cpp
+  #tensor/tests/*.cpp
+  #tensor/native/tests/*.cpp
 )
 foreach(test_src ${TEST_SOURCES})
   get_filename_component(test_name ${test_src} NAME_WE)

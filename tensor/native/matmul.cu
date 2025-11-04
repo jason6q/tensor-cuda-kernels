@@ -6,7 +6,10 @@
 #include "tensor/macros.h"
 #include "tensor/ops.h"
 #include "tensor/tensor.h"
-#include "tensor/native/kernels.cuh"
+#include "tensor/tensor_factory.h"
+#include "tensor/native/cu_kernels.cuh"
+
+// TODO: Migrate this to multi-device
 
 namespace jqTen{
     Tensor matmul_tile_cuda(const Tensor& a, const Tensor& b){
