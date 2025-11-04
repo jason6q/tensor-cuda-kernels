@@ -4,6 +4,7 @@
 #include "core/data_ptr.h"
 #include "core/device.h"
 #include "tensor/tensor.h"
+#include "tensor/tensor_factory.h"
 
 int main(int argc, char* argv[]){
     std::vector<int32_t> shape = {10};

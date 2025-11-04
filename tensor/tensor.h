@@ -13,6 +13,7 @@
 #include "tensor/macros.h"
 #include "core/data_ptr.h"
 #include "core/device.h"
+#include "core/dispatch.h"
 
 namespace jqTen{
     /**
@@ -35,6 +36,25 @@ namespace jqTen{
             const std::vector<int32_t>& shape() const { return shape_; }
             core::DType dtype() const { return dtype_; }
             core::Device device() const { return device_; }
+
+            // TODO:
+            // Add overloaded comparison operator ==
+            // Try to add support to compare against Torch Tensors as well if possible.
+            Tensor operator==(const Tensor& o) const { 
+                JQ_ASSERT(o.shape() == this->shape());
+
+                // Just iterate through each element.
+                if(o.device() == core::Device::CPU){
+
+                }
+                else if (o.device() == core::Device::CUDA){
+                    // To implement
+                }
+                else {
+                    // Not supported
+                    JQ_ASSERT("Tensor comparison not supported for this device.");
+                }
+            }
 
             // Other
             int32_t numel() const {
@@ -79,16 +99,6 @@ namespace jqTen{
             core::Device device_;
             size_t nbytes_;
             core::DataPtr data_ptr_;
+            core::DispatchKeySet dispatch_keyset_;
     };
-
-    Tensor empty(
-        const std::vector<int32_t>& shape, 
-        std::optional<core::DType> dtype = std::nullopt,
-        std::optional<core::Device> device = std::nullopt
-    );
-    Tensor random_uniform(
-        const std::vector<int32_t> &shape,
-        std::optional<core::DType> dtype = std::nullopt,
-        std::optional<int64_t> seed = std::nullopt,
-        std::optional<core::Device> device = std::nullopt);
 }
