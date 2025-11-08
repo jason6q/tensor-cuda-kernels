@@ -37,7 +37,7 @@ namespace jqTen{
  * For every operator define their type signature then create an OpRegistry
  * struct for them.
  */
-static bool _ = []{
-    using EmptyFn = void(*)();
-    OpRegistry<>
-}();
+//static bool _ = []{
+//    using EmptyFn = void(*)();
+//    OpRegistry<>
+//}();

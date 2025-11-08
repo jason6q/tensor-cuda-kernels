@@ -37,6 +37,8 @@ set(SOURCES
   core/data_ptr.cpp
   tensor/tensor.cpp
   tensor/tensor_factory.cpp
+  tensor/register_ops.cpp
+  tensor/ops.cpp
   #tensor/native/matmul.cu
   #tensor/native/arange.cu
   #tensor/native/cuda/matmul_naive.cu

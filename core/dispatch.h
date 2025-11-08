@@ -41,6 +41,8 @@ namespace core{
             table[dispatch_key] = fn;
         }
 
+        // This might be a bit too slow since we have a linear lookup.
+        // Use the bit-wise method like PyTorch?
         Fn lookup(DispatchKey dispatch_key){
             auto it = table.find(dispatch_key);
             if(table.end() == it){
