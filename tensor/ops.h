@@ -12,5 +12,6 @@
 
 namespace jqTen{
     Tensor matmul_naive_cuda(const Tensor& a, const Tensor& b);
-    //Tensor matmul_tile_cuda(const Tensor& a, const Tensor& b);
+    Tensor matmul_naive_cpu(const Tensor& a, const Tensor& b);
+    Tensor matmul_tile_cuda(const Tensor& a, const Tensor& b);
 }

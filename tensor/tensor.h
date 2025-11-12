@@ -34,8 +34,15 @@ namespace jqTen{
             size_t nbytes() const {return nbytes_; }
 
             const std::vector<int32_t>& shape() const { return shape_; }
+            int32_t shape(int32_t i) const { return shape_[i]; }
+
             core::DType dtype() const { return dtype_; }
             core::Device device() const { return device_; }
+
+            // In-place math operators
+            void matmul(const Tensor& o){
+
+            }
 
             // TODO:
             // Add overloaded comparison operator ==
