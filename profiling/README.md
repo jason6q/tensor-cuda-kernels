@@ -36,3 +36,9 @@ PTX/SASS
 ```
  cuobjdump --dup-sass KERNEL | less
 ```
+
+Profiling CPU Kernels
+```
+cachegrind
+perf
+```

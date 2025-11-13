@@ -18,7 +18,6 @@ namespace jqTen{
     ){
         core::DType dtype_ = dtype.value_or(core::DType::FP32);
         core::Device device_ = device.value_or(core::Device::CPU);
-
         return Tensor(shape, dtype_, device_);
     }
 

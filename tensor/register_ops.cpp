@@ -16,7 +16,9 @@ static bool _ = [](){
     // Matmul Naive Registration
     core::OpRegistry<TensorFn> matmul_naive_registry;
     matmul_naive_registry.add_kernel(core::DispatchKey::CUDA, &jqTen::matmul_naive_cuda);
-    std::cout << "Matmul Naive Function Registered." << std::endl; // Replace with macro print later
+    std::cout << "Matmul Naive CUDA Function Registered." << std::endl; // Replace with macro print later
+    matmul_naive_registry.add_kernel(core::DispatchKey::CPU, &jqTen::matmul_naive_cpu);
+    std::cout << "Matmul Naive CPU Function Registered." << std::endl; // Replace with macro print later
 
     // Matmul Tile Registration
     core::OpRegistry<TensorFn> matmul_tile_registry;

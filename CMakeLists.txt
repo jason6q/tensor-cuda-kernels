@@ -39,6 +39,7 @@ set(SOURCES
   tensor/tensor_factory.cpp
   tensor/register_ops.cpp
   tensor/ops.cpp
+  tensor/native/cpu/matmul_naive.cpp
   #tensor/native/matmul.cu
   #tensor/native/arange.cu
   #tensor/native/cuda/matmul_naive.cu
@@ -59,6 +60,7 @@ set_target_properties(jq_kernels PROPERTIES
 # Build tests
 file(GLOB TEST_SOURCES 
   core/tests/*.cpp
+  tensor/tests/test_matmul_naive.cpp
   #tensor/tests/*.cpp
   #tensor/native/tests/*.cpp
 )
