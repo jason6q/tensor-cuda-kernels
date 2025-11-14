@@ -11,6 +11,8 @@
 #include "core/dispatch.h"
 
 namespace jqTen{
+    using TensorFn = jqTen::Tensor(*)(const jqTen::Tensor& a, const jqTen::Tensor& b); // Generic Tensor Function signature. This will probably cover most binary ops.
+
     Tensor matmul_naive_cuda(const Tensor& a, const Tensor& b);
     Tensor matmul_naive_cpu(const Tensor& a, const Tensor& b);
     Tensor matmul_tile_cuda(const Tensor& a, const Tensor& b);

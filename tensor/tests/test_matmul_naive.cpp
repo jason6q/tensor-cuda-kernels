@@ -4,6 +4,8 @@
 #include "tensor/ops.h"
 #include "tensor/tensor.h"
 #include "tensor/tensor_factory.h"
+#include "tensor/op_registry.h"
+#include "core/dispatch.h"
 
 
 void test_matmul_naive(){
@@ -11,7 +13,7 @@ void test_matmul_naive(){
     jqTen::Tensor b = jqTen::random_uniform({10,1});
 
     // CPU Kernel Test
-    jqTen::Tensor c = jqTen::matmul_naive_cpu(a, b);
+    jqTen::Tensor c = matmul_naive_registry.lookup(core::DispatchKey::CPU)(a,b);
     a.print();
     b.print();
     c.print();
